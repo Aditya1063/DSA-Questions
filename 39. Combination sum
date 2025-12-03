@@ -1,0 +1,28 @@
+https://leetcode.com/problems/combination-sum/submissions/1845632524
+
+Aditya kumar
+23scse1011063
+
+class Solution {
+    public void combination(int i, int n, int[] arr, List<Integer> res, List<List<Integer>> result, int sum, int target) {
+        if (sum==target) {
+            result.add(new ArrayList<>(res));
+            return;
+        }
+        if (i==n || sum>target) return;
+
+        res.add(arr[i]);
+        combination(i, n, arr, res, result, sum + arr[i], target);
+        res.remove(res.size() - 1);
+
+        
+        combination(i +1,n,arr,res,result, sum, target);
+    }
+
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> res = new ArrayList<>();
+        combination(0, candidates.length, candidates, res, result, 0, target);
+        return result;
+    }
+}
